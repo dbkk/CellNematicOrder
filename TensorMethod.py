@@ -7,7 +7,7 @@ from scipy import ndimage as ndi
 from skimage.feature import peak_local_max
 
 # Specify single image file name
-filename = './data/NSC-Ph.tif'
+filename = './data/NSC-Ph-1.tif'
 
 # Pixel size of bluring kernel. Typically set at about 5 cell size.
 sigma=40.0

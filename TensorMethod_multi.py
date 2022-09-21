@@ -26,7 +26,7 @@ for i in range_of_file_numbering:
     filename = f'./data/NSC-Ph-{str(i)}.tif' #specifying file name
 
     I=np.float32(io.imread(filename))
-    I=(I-np.min(I))/np.max(I)-np.min(I)
+    I=(I-np.min(I))/(np.max(I)-np.min(I))
 
     # Using tensor method to calculate the phase
     Ix = I[2:,1:-1]-I[0:-2,1:-1]

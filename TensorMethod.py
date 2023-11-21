@@ -18,10 +18,15 @@ defthres=0.3
 # Output figure size
 fs=12
 
-#%%
 # Read image and normalize
 I=np.float32(io.imread(filename))
 I=(I-np.min(I))/(np.max(I)-np.min(I))
+
+
+plt.figure(figsize=(fs,fs))
+plt.imshow(I,cmap='gray',vmin=0.0,vmax=0.3)
+plt.title('Original image')
+plt.axis('off')
 
 # Using tensor method to calculate the phase
 Ix = I[2:,1:-1]-I[0:-2,1:-1]
@@ -52,9 +57,10 @@ chargedensity=(divXXX*divXYY - divXYX*divXXY)
 # Show image with detected angle of alignment
 # Angle is from -0.5 to 0.5 (corresponding to -pi/2 to pi/2 where 0 is the x-axis)
 plt.figure(figsize=(fs,fs))
+plt.title('Phase')
 plt.imshow(I,cmap='gray',vmin=0.0,vmax=0.3)
 plt.imshow(phi,cmap=plt.cm.hsv,alpha=0.5)
-plt.colorbar(orientation='horizontal',shrink=0.5)
+plt.colorbar(shrink=0.5)
 plt.axis('off')
 
 plt.savefig('./data/savefiles/Ph-with-Phase.png',bbox_inches='tight')
@@ -62,6 +68,7 @@ plt.savefig('./data/savefiles/Ph-with-Phase.png',bbox_inches='tight')
 #%%
 # Show coherence
 plt.figure(figsize=(fs,fs))
+plt.title('Coherence')
 plt.imshow(I, cmap=plt.cm.gray,vmin=0.0,vmax=0.3)
 plt.imshow(coh,cmap='Greens',alpha=0.7)
 plt.axis('off')
@@ -70,6 +77,7 @@ plt.axis('off')
 # Plotting topological defects
 plt.figure(figsize=(fs,fs));
 plt.axis('off')
+plt.title('Topological defects')
 plt.imshow(I, cmap=plt.cm.gray,vmin=0.0,vmax=0.3)
 # Plus 1/2 toplogical defects
 arrP=peak_local_max(-chargedensity, threshold_abs=defthres)
